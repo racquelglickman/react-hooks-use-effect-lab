@@ -7,17 +7,18 @@ function Question({ question, onAnswered }) {
   useEffect(() => {
     console.log('useEffect running')
 
-      const timer = setTimeout(() => setTimeRemaining(timeRemaining - 1), 1000);
     if (timeRemaining === 0) {
       setTimeRemaining(10);
       onAnswered(false);
     }
+    
+    const timer = setTimeout(() => setTimeRemaining(timeRemaining - 1), 1000);
 
     return  () => {
       clearTimeout(timer)
     }
 
-  }, [timeRemaining]);
+  }, [timeRemaining, onAnswered]);
 
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
